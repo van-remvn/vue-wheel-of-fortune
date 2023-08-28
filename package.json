@@ -13,6 +13,7 @@
     "core-js": "^3.8.3",
     "moment": "^2.29.4",
     "vue": "^3.2.13",
+    "vue-fortune-wheel": "^2.1.0",
     "vue-router": "^4.0.3",
     "vue-validate": "^1.0.1",
     "vuex": "^4.0.0",
