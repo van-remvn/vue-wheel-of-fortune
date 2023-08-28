@@ -10,28 +10,28 @@ const routes: Array<RouteRecordRaw> = [
         title: 'Home',
     }
   },
-  {
-    path: '/login',
-    name: 'login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import('../views/LoginView.vue'),
-    meta: {
-        title: "Login",
-    }
-  },
-  {
-      path: '/register',
-      name: 'register',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/RegisterView.vue'),
-      meta: {
-          title: "Register",
-      }
-    }
+  // {
+  //   path: '/login',
+  //   name: 'login',
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () => import('../views/LoginView.vue'),
+  //   meta: {
+  //       title: "Login",
+  //   }
+  // },
+  // {
+  //     path: '/register',
+  //     name: 'register',
+  //     // route level code-splitting
+  //     // this generates a separate chunk (about.[hash].js) for this route
+  //     // which is lazy-loaded when the route is visited.
+  //     component: () => import('../views/RegisterView.vue'),
+  //     meta: {
+  //         title: "Register",
+  //     }
+  //   }
 ]
 
 const router = createRouter({
