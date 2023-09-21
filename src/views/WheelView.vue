@@ -31,6 +31,12 @@
         @rotateStart="onCanvasRotateStart"
         @rotateEnd="onRotateEnd"
       />
+
+      <div style="margin-top: 20px;">
+        <button type="button" @click="onCanvasRotateStart" style="background-color: blue; color: white; padding: 15px; border-radius: 5px; font-size: 20px;">Start</button>
+        <h3>Current Points: {{currentPoint.toLocaleString()}}</h3>
+
+      </div>
     </div>
   </template>
   
@@ -38,12 +44,15 @@
   import { ref, computed, onMounted } from 'vue'
   import FortuneWheel from 'vue-fortune-wheel'
   import 'vue-fortune-wheel/style.css'
+import { number } from 'yup';
   
   const prizeId = ref(0)
+
+  let currentPoint = ref(10000)
   
   const wheelEl = ref()
   const canvasVerify = ref(false) // Whether the turntable in canvas mode is enabled for verification
-  const verifyDuration = 2
+  const verifyDuration = 1
   const canvasOptions = {
     btnWidth: 140,
     borderColor: '#584b43',
@@ -54,27 +63,59 @@
   const prizesCanvas = [
     {
       id: 1, //* The unique id of each prize, an integer greater than 0
-      name: 'Blue', // Prize name, display value when type is canvas (this parameter is not needed when type is image)
-      value: 'Blue\'s value', //* Prize value, return value after spinning
-      bgColor: '#45ace9', // Background color (no need for this parameter when type is image)
+      name: '0 point', // Prize name, display value when type is canvas (this parameter is not needed when type is image)
+      value: 0, //* Prize value, return value after spinning
+      bgColor: '#FF0000', // Background color (no need for this parameter when type is image)
       color: '#ffffff', // Font color (this parameter is not required when type is image)
-      probability: 30 //* Probability, up to 4 decimal places (the sum of the probabilities of all prizes
+      probability: 0 //* Probability, up to 4 decimal places (the sum of the probabilities of all prizes
     },
     {
       id: 2,
-      name: 'Red',
-      value: 'Red\'s value',
-      bgColor: '#dd3832',
+      name: '-100 points',
+      value: -100,
+      bgColor: '#00FF00',
       color: '#ffffff',
-      probability: 40
+      probability: 0
     },
     {
       id: 3,
-      name: 'Yellow',
-      value: 'Yellow\'s value',
-      bgColor: '#fef151',
+      name: '+200 points',
+      value: 200,
+      bgColor: '#0000FF',
       color: '#ffffff',
-      probability: 30
+      probability: 0
+    },
+    {
+      id: 4,
+      name: '+500 points',
+      value: 500,
+      bgColor: '#FFCCFF',
+      color: '#ffffff',
+      probability: 0
+    },
+    {
+      id: 5,
+      name: '-200 points',
+      value: -200,
+      bgColor: '#00FFFF',
+      color: '#ffffff',
+      probability: 0
+    },
+    {
+      id: 6,
+      name: '-500 points',
+      value: -500,
+      bgColor: '#FF00FF',
+      color: '#ffffff',
+      probability: 100
+    },
+    {
+      id: 7,
+      name: '+100 points',
+      value: 100,
+      bgColor: '#C0C0C0',
+      color: '#ffffff',
+      probability: 0
     },
   ]
   
@@ -136,7 +177,9 @@
   }
   
   function onRotateEnd (prize) {
-    alert(prize.value)
+    // alert(prize.value)
+    console.log(prize.value);
+    currentPoint.value += prize.value
   }
   
   function onChangePrize (id) {
